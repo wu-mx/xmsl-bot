@@ -17,9 +17,9 @@ bot.command('xm', async (ctx) => {
     if (ctx.message.text.split(' ').length === 1) {
         if (ctx.message.reply_to_message) {
             if (ctx.message.reply_to_message.text) {
-                await ctx.reply(await GenerateAnswer(ctx.message.reply_to_message.text), {reply_to_message_id: ctx.message.reply_to_message.message_id})
+                await ctx.sendMessage(await GenerateAnswer(ctx.message.reply_to_message.text), {reply_to_message_id: ctx.message.reply_to_message.message_id})
             }else{
-                await ctx.reply("羡慕死了", {reply_to_message_id: ctx.message.reply_to_message.message_id})
+                await ctx.sendMessage("羡慕死了", {reply_to_message_id: ctx.message.reply_to_message.message_id})
             }
         } else {
             await ctx.reply('请发送 /xm "消息“ 或者回复一条消息')
@@ -27,9 +27,9 @@ bot.command('xm', async (ctx) => {
     } else {
         if (ctx.message.reply_to_message) {
             if (ctx.message.reply_to_message.text) {
-                await ctx.reply(await GenerateAnswer(ctx.message.text), {reply_to_message_id: ctx.message.reply_to_message.message_id})
+                await ctx.sendMessage(await GenerateAnswer(ctx.message.text), {reply_to_message_id: ctx.message.reply_to_message.message_id})
             }else{
-                await ctx.reply("羡慕死了", {reply_to_message_id: ctx.message.reply_to_message.message_id})
+                await ctx.sendMessage("羡慕死了", {reply_to_message_id: ctx.message.reply_to_message.message_id})
             }
         } else {
             await ctx.reply(await GenerateAnswer(ctx.message.text))
