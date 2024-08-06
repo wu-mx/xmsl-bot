@@ -20,7 +20,7 @@ bot.command('xm', async (ctx) => {
                 await ctx.sendMessage("羡慕死了", {reply_to_message_id: ctx.message.reply_to_message.message_id})
             }
         } else {
-            await ctx.reply('请发送 /xm "消息“ 或者回复一条消息')
+            await ctx.reply('请发送 /xm "消息" 或者回复一条消息')
         }
     } else {
         if (ctx.message.reply_to_message) {
