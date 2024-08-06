@@ -38,14 +38,16 @@ bot.command('xm', async (ctx) => {
 })
 
 bot.on('inline_query', async (ctx) => {
+    let ans = await GenerateAnswer(ctx.inlineQuery.query)
     const result = [
         {
             type: 'article',
             id: RandomString(16),
             title: '发送羡慕！',
             input_message_content: {
-                message_text: await GenerateAnswer(ctx.inlineQuery.query)
+                message_text: ans
             },
+            description: ans,
             reply_markup: {
                 inline_keyboard: [[
                     {text: '我也要羡慕！', switch_inline_query_current_chat: ''}

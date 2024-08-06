@@ -8,14 +8,20 @@ const client = new OpenAI({
 });
 
 async function GenerateAnswer(question) {
+    if (question === "") {
+        return "羡慕死了"
+    }
+    if (question.startsWith("xm")) {
+        return question
+    }
     const chatCompletion = await client.chat.completions.create({
         messages: [
-            { role: "system", content: prompt },
-            { role: 'user', content: question }
+            {role: "system", content: prompt},
+            {role: 'user', content: question}
         ],
         model: 'gpt-3.5-turbo',
     });
     return chatCompletion.choices[0].message.content;
 }
 
-export { GenerateAnswer }
+export {GenerateAnswer}
