@@ -1,7 +1,6 @@
 import { Telegraf } from 'telegraf'
-import { message } from 'telegraf/filters'
-import {GenerateAnswer} from "./ai.js";
-import {RandomString} from "./utils.js";
+import { GenerateAnswer } from "./ai.js";
+import { RandomString } from "./utils.js";
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -13,7 +12,6 @@ await bot.telegram.setMyCommands([
 bot.start((ctx) => ctx.reply('<b>羡慕死了！</b>\n使用 <code>/xm "消息"</code> 或者 /xm 回复一条消息来使用', {parse_mode: 'HTML'}))
 
 bot.command('xm', async (ctx) => {
-    // if split length is 1, check the message that user reply
     if (ctx.message.text.split(' ').length === 1) {
         if (ctx.message.reply_to_message) {
             if (ctx.message.reply_to_message.text) {
@@ -63,6 +61,5 @@ bot.on('inline_query', async (ctx) => {
 
 bot.launch()
 
-// Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))

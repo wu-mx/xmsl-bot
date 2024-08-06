@@ -3,8 +3,8 @@ import * as fs from "node:fs";
 
 let prompt = fs.readFileSync('prompt.txt', 'utf8');
 const client = new OpenAI({
-    apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
-    baseURL: 'https://api.theb.ai/v1'
+    apiKey: process.env.OPENAI_API_KEY,
+    baseURL: process.env.OPENAI_API_BASE_URL ? process.env['OPENAI_API_BASE_URL'] : "https://api.openai.com/v1/",
 });
 
 async function GenerateAnswer(question) {
