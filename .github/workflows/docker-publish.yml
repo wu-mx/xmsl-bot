@@ -49,7 +49,7 @@ jobs:
 
       - name: Get the latest Git tag
         id: git_tag
-        run: echo "GIT_LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
+        run: echo "GIT_LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         id: build-and-push
