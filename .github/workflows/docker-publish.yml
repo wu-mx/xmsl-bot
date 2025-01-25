@@ -40,7 +40,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5.0.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: vooice/xmsl-bot
           tags: |
             type=ref,event=branch
             type=ref,event=pr

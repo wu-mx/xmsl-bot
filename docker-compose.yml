@@ -1,7 +1,7 @@
 version: "0.1"
 services:
   xmsl-bot:
-    image: "xmsl-bot:latest"
+    image: vooice/xmsl-bot:latest
     container_name: xmsl-bot
     environment:
       - OPENAI_API_KEY=YOUR_API_KEY
