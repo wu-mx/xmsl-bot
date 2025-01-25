@@ -41,15 +41,15 @@ jobs:
         uses: docker/metadata-action@v5.0.0
         with:
           images: vooice/xmsl-bot
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=ref,event=tag
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.created=${{ steps.meta.outputs.created }}
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.version=${{ steps.meta.outputs.version }}
+
+      - name: Get the latest Git tag
+        id: git_tag
+        run: echo "GIT_LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         id: build-and-push
@@ -57,7 +57,9 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            vooice/xmsl-bot:latest
+            vooice/xmsl-bot:${{ env.GIT_LATEST_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
